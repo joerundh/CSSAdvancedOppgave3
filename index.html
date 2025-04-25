@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/nav.css">
+    <link rel="stylesheet" href="./css/rollinghead.css">
+    <link rel="stylesheet" href="./css/bouncingball.css">
+    <link rel="stylesheet" href="./css/nervousbutton.css">
+    <script type="module" src="./js/app.js" defer="defer"></script>
+    <title>Transforms, transitions and animations</title>
+</head>
+<body>
+    <header>
+        <button id="search-button" title="Search"></button>
+        <h1 id="title"></h1>
+        <button id="nav-button" title="Menu"></button>
+        <nav id="nav">
+            <ul id="nav-list"></ul>
+        </nav>
+    </header>
+    <main>
+        <section data-title="Transforms, transitions and animations" data-nav-label="Home">
+            <p>We will here present a small set of usages of CSS's <b>animation</b>, <b>transition</b> and <b>transform</b>.</p>
+            <p>As a small introductory example, here is head trapped in a tube and condemned to roll back and forth forever:</p>
+            <div id="rolling-pad">
+                <div id="rolling-head"></div>
+            </div>
+            <p>Doesn't seem to be enjoying it, does he? Maybe we can all relate to him sometimes.</p>
+            <p>This example consists simply of a div turned circular with an emoji as background image, made to move horizontally by adjusting its <b>left</b> property from zero to the maximum value in keyframes, as well as <b>transform</b> with <b>rotate</b> from zero degrees to 1547 degrees (i.e. a little more than four full rotations, calculated from the width of the darkgrey rolling pad and the width of the head) in the keyframes. As such, it appears to roll across, then bounce with no loss of neither linear nor rotational kinetic energy and roll back the other way. And with no loss of energy, and through the magic of CSS, this then repeats indefinitely.</p>
+            <p>For more examples, see available pages under the menu on the top right (which itself exemplifies <b>transition</b> and <b>transform</b>, incidentally).</p>
+        </section>
+        <section data-title="Bouncing basketball">
+            <p>In this section, the use of the <b>animation</b> property in CSS will be illustrated. Below you may observe the image of a basketball bouncing up and down, deforming at each hit of the ground, and with a shadow forming as well to add to the realism:</p>
+            <div id="bouncing-ball">
+                <div class="ball" id="basketball"></div>
+                <div class="shadow" id="basketball-shadow"></div>
+            </div>
+            <div id="bounce-speed-adjust">
+                <label for="bounce-speed-input">Speed:</label>
+                <input type="range" min="10" max="50" value="10" id="bounce-speed-input">
+                <output for="bounce-speed-input" id="bounce-speed-output">10</output>
+            </div>
+            <button id="bounce-toggle">Stop bouncing</button>
+            <p>The button may be used to stop and play the animation, and the speed at which the ball moves can be adjusted with the range input (minimum speed: 10, maximum speed: 50, with disregard for units).</p>
+            <p>Assuming the collision with the ground is elastic, the kinetic energy of the basketball is the same before and after each bounce; only the direction of motion changes. It will therefore reach the same height again after each drop and recoil.</p>
+            <p>As such, the fall animation in CSS consists simply of the motion downwards, and then a standstill at the bottom to give time to the deformation animation. And for the recoil, the same animation is simply played in reverse, using <b>alternate</b> in CSS. Thus the bounce looks at it would for a real elastic bounce.</p>
+            <p>Note: the last sentence above is strictly speaking not true. The timing function is given as <b>ease-in</b>, which given the prevalence of cubic Bezier curves in CSS, presumably denotes some cubic function of the time rather than a quadratic one, which of course it would be for a real elastic bounce in constant gravity <i>g</i>. Attempts were made to write a quadratic Bezier curve, which has one control point, as a cubic Bezier curve, which has two, but this turned out to involve rather heavy quantities of algebra, which was deemed too time-consuming. To put it bluntly, I couldn't be arsed. Consider it a finishing touch saved for later.</p>
+            <p>The shadow consists of a div with a radial gradient and an initial opacity zero, which is then set to one with a sharply rising Bezier curve which peaks upon impact. Then when the ball deforms (during which time the ball div also slightly moves up and down to appear to deform "in place"), the shadow deforms with it (and consequently also moves slightly to seem like it stays in place).</p>
+        </section>
+        <section data-title="Nervous button">
+            <p>Here is a button which responds not too greatly when interacted with:</p>
+            <button id="submit-button" class="unclicked" onclick="this.className = 'clicked';";>
+                <div>
+                    <div>Submit</div>
+                    <div>I don't know if I want to...</div>
+                    <div>All right, all right, I'll do it!</div>
+                    <div>Okay, done! Happy now?</div>
+                </div>
+            </button>
+            <button id="reset-submit-button" onclick="document.getElementById('submit-button').className = 'unclicked';">Reset the button</button>
+            <p>(You can imagine it yourself as part of a form, say, where information is entered into input boxes.)</p>
+            <p>To achieve the text change, the button is set with a fixed width and height, and inside the button tags are divs containing all the possible texts that should appear in the button. This divs have the same dimensions as the button itself. Then for <b>:hover</b>, <b>:active</b> et.al., the different divs are made to disappear and to appear, in such a way that the appropriate text is showing. Then a small bit of Javascript, not even worth putting in its own script file, is used to change the class of the button when it is clicked, to let CSS know that the final text should appear.</p>
+        </section>
+    </main>
+    <footer>
+        <p>2025 No rights reserved</p>
+    </footer>
+</body>
+</html>

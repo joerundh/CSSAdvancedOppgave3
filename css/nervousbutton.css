@@ -1,0 +1,133 @@
+@keyframes shake-softly {
+    0% {
+        transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(2deg);
+    }
+    75% {
+        transform: rotate(-2deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+@keyframes shake-hard {
+    0% {
+        transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(5deg);
+    }
+    75% {
+        transform: rotate(-5deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+@keyframes breathe {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1.1);
+    }
+}
+
+#submit-button {
+    margin: 20px 0;
+    width: 300px;
+    max-height: fit-content;
+    font-size: 1rem;
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 0;
+}
+
+#submit-button > div {
+    display: flex;
+    flex-direction: row;
+}
+
+#submit-button > div > div {
+    flex: 1 0 300px;
+    padding: 10px 0;
+    transition: transform 200ms ease-in;
+    position: relative;
+}
+
+/*
+No action
+*/
+
+#submit-button.unclicked > div > div {
+    transform: scale(0);
+}
+
+#submit-button.unclicked > div > div:first-child {
+    transform: scale(1);
+}
+
+/*
+Hover
+*/
+
+#submit-button.unclicked:hover {
+    animation: shake-softly 250ms ease-in 0ms infinite;
+}
+
+#submit-button.unclicked:hover > div {
+    transform: translateX(-300px);
+    transition: none;
+}
+
+#submit-button.unclicked:hover > div > div {
+    transform: scale(0);
+}
+
+#submit-button.unclicked:hover > div > div:nth-child(2) {
+    transform: scale(1);
+}
+
+/*
+Active
+*/
+
+#submit-button.unclicked:active {
+    animation: shake-hard 125ms ease-in 0ms infinite;
+}
+
+#submit-button.unclicked:active > div {
+    transform: translateX(-600px);
+}
+
+#submit-button.unclicked:active > div > div {
+    transform: scale(0);
+}
+
+#submit-button.unclicked:active > div > div:nth-child(3) {
+    transform: scale(1);
+}
+
+/*
+Clicked
+*/
+
+#submit-button.clicked {
+    animation: breathe 1500ms ease-in-out infinite alternate;
+}
+
+#submit-button.clicked > div {
+    transform: translateX(-900px);
+}
+
+#submit-button.clicked > div > div {
+    transform: scale(0);
+}
+
+#submit-button.clicked > div > div:last-child {
+    transform: scale(1);
+}

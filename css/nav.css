@@ -1,0 +1,51 @@
+header button {
+    width: 40px;
+    height: 40px;
+    background-color: #909090;
+    background-size: 70% 70%;
+    background-position: center center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    transition: background-image 200ms ease-in;
+    border-radius: 3px;
+    border: 1px solid black;
+}
+
+#nav-button {
+    background-image: url("./images/menu-icon.png");
+    background-size: 70% 70%;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+#nav {
+    background-color: #303030;
+    position: fixed;
+    width: fit-content;
+    height: fit-content;
+    transform-origin: top;
+    transform: scaleY(0);
+    overflow: hidden;
+    transition: transform 200ms ease-in-out;
+    font-size: 22px;
+    z-index: 1;
+}
+
+#nav-list li {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+#nav-list li a {
+    width: 100%;
+    text-decoration: none;
+    color: black;
+    padding: 20px;
+    color: #c0c0c0;
+}
+
+#nav-list li a:hover {
+    background-color: #909090;
+    color: #202020;
+}
